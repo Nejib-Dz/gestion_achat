@@ -1,0 +1,60 @@
+<div mat-dialog-title >
+    <h1>{{isAdding ? 'Add Devis': 'Edit Devis'}}</h1>
+</div>
+<form [formGroup]="AddForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content" style="width: 560px;">
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nom du service</mat-label>
+                    <input matInput type="text" placeholder="nom du service" formControlName="dateCreeDevis">
+                </mat-form-field>
+                <div
+                class="group inline-flex items-center  -ml-4 py-2 px-4 rounded cursor-pointer"
+                >
+
+            </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Montant service</mat-label>
+                    <input matInput type="text" placeholder="Montant service" formControlName="dateValidDevis">
+                </mat-form-field>
+
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="outline" style="margin-left: 100px;">
+                    <mat-label>Unité (heuu</mat-label>
+                    <input matInput placeholder="montanTotal"
+                     type="text" formControlName="montanTotal">
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="margin-left: 100px;">
+                    <mat-label>Commandes</mat-label>
+                    <mat-select  multiple formControlName="commandes">
+
+                        <mat-option *ngFor="let commande of commandes" [value]="commande">{{commande.name}}
+
+                        </mat-option>
+                      </mat-select>
+                </mat-form-field>
+
+
+            </div>
+            <div>
+            <mat-icon
+
+            class="icon-size-5"
+            [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+        <span class="ml-2 font-medium text-secondary group-hover:underline">Ajouter&nbsp;service</span>
+    </div>
+
+        </div>
+
+
+
+
+    </div>
+    <div mat-dialog-actions class="action" style="margin-left: 400px;">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary"  type="submit">Save</button>
+    </div>
+</form>

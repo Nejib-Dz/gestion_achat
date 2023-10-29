@@ -1,0 +1,76 @@
+<div mat-dialog-title >
+    <h1>{{isAdding ? 'Add Command': 'Edit Command'}}</h1>
+</div>
+<form [formGroup]="AddForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content" style="width: 560px;">
+        <div class="row">
+            <div class="col-3">
+                <mat-form-field appearance="outline">
+                <mat-label>Name_Cmd</mat-label>
+                    <input matInput type="text" formControlName="name"
+                    placeholder="Name">
+                  </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Mode de paiement</mat-label>
+                    <input matInput type="text" placeholder="mode" formControlName="modePaiment">
+                </mat-form-field>
+              <!--   <mat-form-field appearance="outline">
+
+                    <mat-label>Statut</mat-label>
+                    <input matInput type="text" placeholder="statut" formControlName="statut">
+                </mat-form-field> -->
+
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="outline" style="margin-left: 100px;">
+                    <mat-label>Adresse de livraison</mat-label>
+                    <input matInput placeholder="Adresse"
+                     type="text" formControlName="adresseLivraison">
+                </mat-form-field>
+               <!--  <mat-form-field appearance="outline" style="margin-left: 100px;">
+                    <mat-label>Montant Total</mat-label>
+                    <input matInput type="number" placeholder="Montant" formControlName="montantToltal">
+                </mat-form-field> -->
+
+
+                <mat-form-field appearance="outline" style="margin-left: 100px;">
+                    <mat-label>DemandeAchat</mat-label>
+                    <mat-select [formControl]="articlescontrols" multiple
+                        formControlName="demandeAchats" >
+
+                      <mat-option
+                      [matTooltip]="'Name_demande:'+demande.name+' '+'Date_demande : '+demande.dateDemande?.split('T')[0]+' ' +'Date_approbation :'+demande.dateApprobation?.split('T')[0]+' '+'Description :'+' '+demande.description "
+        [matTooltipPosition]="'right'"
+        [matTooltipDisabled]="false"
+                       *ngFor="let demande of demandeAchats" [value]="demande">{{demande.name}}
+
+                      </mat-option>
+                    </mat-select>
+
+
+                </mat-form-field>
+                <mat-form-field appearance="outline" style="margin-left: 100px;">
+                    <mat-label>Fournisseur</mat-label>
+                    <mat-select [formControl]="fournisseurcontrols" multiple formControlName="fournisseurs">
+
+                      <mat-option *ngFor="let fournisseur of fournisseurs" [value]="fournisseur">{{fournisseur.name}}
+
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+    <div mat-dialog-actions class="action" style="margin-left: 400px;">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" [mat-dialog-close]="false"  type="submit">Save</button>
+    </div>
+</form>

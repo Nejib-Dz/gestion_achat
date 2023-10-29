@@ -1,0 +1,74 @@
+<div mat-dialog-title
+[style.backgroundColor]="backgroundColor" class="custom-header">
+    <h1 [ngStyle]="{'background-color': isMobile ? 'red' : '', 'margin-bottom.px': isMobile ? 10 : 22, 'text-transform': 'uppercase'}">
+        {{ isAdding ? 'Add Fournisseur' : 'Edit Fournisseur' }}
+    </h1>
+</div>
+
+
+<form [formGroup]="AddForniss" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="content" style="width: 660px;">
+        <div class="row">
+            <div class="">
+                <mat-form-field class="row  col-5" style="margin-left: 10px;" >
+                    <mat-label>Name</mat-label>
+                    <input matInput type="text" placeholder="Name" formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field class="row  col-5"   style="margin-left: 20px;">
+
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" placeholder="Email" formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="row  col-5"   style="margin-left: 10px;" >
+                    <mat-label>Tele</mat-label>
+                    <input type="text" matInput placeholder="Tele" formControlName="tele">
+                </mat-form-field>
+
+
+                <mat-form-field class="row  col-5"   style="margin-left: 20px;">
+                    <mat-label>Country</mat-label>
+                    <input type="text" matInput placeholder="Country" formControlName="country">
+                </mat-form-field>
+
+
+            </div>
+
+
+
+     </div>
+     <div *ngIf="isNoteOpen">
+        <app-evaluationsfournisseur ></app-evaluationsfournisseur>
+    </div>
+     <div mat-dialog-actions class="action" style="margin-left: 200px;">
+        <button mat-raised-button color="warn" type="button" [mat-dialog-close]="true">Cancel</button>
+        <button mat-raised-button color="primary"   type="submit" [mat-dialog-close]="true">Save</button>
+
+     <!-- New note -->
+     <button
+     mat-flat-button
+     [ngClass]="{'responsive-class': mobileQuery.matches}"
+     [ngStyle]="{'background-color':isNoteOpen ? 'primary' : 'green'}"
+     [color]="isNoteOpen==false ? 'warn': 'primary'"
+     (click)="addNewNote()">
+     <mat-icon [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+     <span class="hidden sm:inline-block ml-2">Note</span>
+   </button>
+
+    <!--  <button
+     mat-flat-button
+     [color]="isNoteOpen==false ? 'green': 'primary'"
+     (click)="addNewNote()">
+     <mat-icon
+         [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+     <span class="hidden sm:inline-block ml-2">Note</span>
+ </button> -->
+</div>
+    </div>
+</form>
+
+
+
+
+
+

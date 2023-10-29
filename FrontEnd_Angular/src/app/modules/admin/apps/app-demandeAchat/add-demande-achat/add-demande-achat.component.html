@@ -1,0 +1,73 @@
+<div mat-dialog-title [style.backgroundColor]="backgroundColor" class="custom-header">
+    <h1 style="margin-bottom: 22px; text-transform: uppercase;">
+        {{isAdding ? 'Add Demande' : 'Edit Demande'}}
+      </h1>
+</div>
+<form [formGroup]="AddForm" (ngSubmit)="onFormSubmit()" style="width: 600px;">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <div class="col-3">
+
+<!--
+            <mat-form-field appearance="outline">
+                <mat-label>Date demande</mat-label>
+                <input matInput type="date" placeholder="Date demande" formControlName="dateDemande">
+            </mat-form-field> -->
+            <!-- <mat-form-field appearance="outline">
+                <mat-label>Date Approbation</mat-label>
+                <input matInput type="date" placeholder="Date Approbation" formControlName="dateApprobation">
+            </mat-form-field> -->
+
+
+
+            <mat-form-field appearance="outline">
+                <mat-label>Qte Demandee</mat-label>
+                <input matInput type="number" placeholder="Qte Demandee" formControlName="qteDemandee">
+            </mat-form-field>
+            <mat-form-field appearance="outline" *ngIf="!isAdding">
+
+                <mat-label>Qte Approuvee</mat-label>
+                <input matInput type="number" placeholder="Qte Approuvee" formControlName="qteApprouvee">
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="outline">
+
+                <mat-label>Description</mat-label>
+                <input matInput placeholder="Stock" formControlName="description">
+            </mat-form-field>
+            </div>
+            <div class="col-3">
+                <mat-form-field appearance="outline" style="margin-left: 100px;">
+                    <mat-label>Delais</mat-label>
+                    <input matInput placeholder="Delais" formControlName="delais">
+                </mat-form-field>
+
+
+               <mat-form-field appearance="outline" style="margin-left: 100px;">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Name" type="text" formControlName="name">
+
+                </mat-form-field>
+
+                 <mat-form-field appearance="outline" style="margin-left: 100px;">
+                    <mat-label >Article</mat-label>
+                    <mat-select  multiple   formControlName="articles">
+
+                      <mat-option *ngFor="let article of articles"  [value]="article">{{article.name}}
+
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+    </div>
+    </div>
+    <div mat-dialog-actions class="action" style="margin-left: 415px;">
+        <button mat-raised-button type="button" class="margin-right:5px"[mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" class="margin-left:5px" [mat-dialog-close]="false"   type="submit">Save</button>
+    </div>
+</form>
+

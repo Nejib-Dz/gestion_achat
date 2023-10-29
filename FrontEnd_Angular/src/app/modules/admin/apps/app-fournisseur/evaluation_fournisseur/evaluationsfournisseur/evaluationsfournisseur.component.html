@@ -1,0 +1,92 @@
+<!---formilaire evaluation fournisseur-->
+<div class="card">
+    <h1 mat-dialog-title style="color: blue;">Evaluation Fournisseur</h1>
+    <div mat-dialog-content>
+      <form [formGroup]="evaluationForm" (ngSubmit)="submitForm()">
+       <!-- Pour la fiabilité -->
+<mat-form-field  class="row  col-5" >
+    <mat-label>Fiabilité</mat-label>
+    <mat-select formControlName="fiabilite" placeholder="Choisissez la fiabilité">
+      <mat-option  value="haute" >Haute</mat-option>
+      <mat-option value="moyenne" >Moyenne</mat-option>
+      <mat-option value="basse" >Basse</mat-option>
+    </mat-select>
+    <mat-error *ngIf="evaluationForm?.get('fiabilite').hasError('required')">La fiabilité est requise</mat-error>
+  </mat-form-field>
+
+  <!-- Pour la performance -->
+  <mat-form-field class="row  col-6" style="margin-left: 17px;">
+    <mat-label>Performance</mat-label>
+    <mat-select formControlName="performance" placeholder="Choisissez la performance">
+      <mat-option  value="élevée" >Élevée</mat-option>
+      <mat-option value="moyenne" >Moyenne</mat-option>
+      <mat-option value="faible" >Faible</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+        <mat-form-field class="row col col-11" style="margin-left: px;">
+            <mat-label>Commentaire</mat-label>
+            <textarea matInput formControlName="description" placeholder="Commentaire">
+            </textarea>
+        <mat-error *ngIf="evaluationForm?.get('description').hasError('required')">Le description est requis</mat-error>
+            </mat-form-field><br>
+
+            <button mat-raised-button color="primary"  >Enregistrer</button>
+      </form>
+    </div>
+    <!-- <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Annuler</button>
+
+    </div> -->
+
+
+
+     <!--table evaluation fournisseur-->
+     <table class="table table-striped mt-3">
+        <thead>
+          <tr>
+
+
+            <th scope="col">Fiabilite</th>
+             <th scope="col">Performance</th>
+            <th scope="col">Commentaire</th>
+            <th scope="col">Note</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let form of evaluationByIdFournisseur">
+                <td>{{ form.fiabilite }}</td>
+                <td>{{ form.performance }}</td>
+                <td>{{ form.description }}</td>
+                <td>
+                  <mat-icon svgIcon="feather:star" [ngClass]="getColorClass(form.fiabilite,form.performance)"></mat-icon>
+                </td>
+
+
+
+                 <td>
+                <button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                  </button>
+                <mat-menu #menu="matMenu">
+                   <!--  <button mat-menu-item color="primary" (click)="openEditDialog(fournisseur)">
+                        <mat-icon [color]="'primary'">edit</mat-icon>
+                        <span>Edit</span>
+                      </button> -->
+                      <button mat-menu-item color="warn" (click)="DeleteNote(form.id)">
+                        <mat-icon [color]="'warn'">delete</mat-icon>
+                        <span>Delete</span>
+                      </button>
+
+                  </mat-menu>
+
+
+        </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
